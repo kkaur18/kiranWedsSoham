@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ── Font routing by locale ─────────────────────────────────────── */
+  :root {
+    --font-display: var(--font-cormorant), Georgia, serif;
+    --font-text: var(--font-dm-sans), Helvetica, Arial, sans-serif;
+  }
+
+  /* Hindi + Marathi → Devanagari */
+  [data-locale="hi"],
+  [data-locale="mr"] {
+    --font-display: var(--font-noto-serif-deva), serif;
+    --font-text: var(--font-noto-sans-deva), sans-serif;
+  }
+
+  /* Punjabi → Gurmukhi */
+  [data-locale="pa"] {
+    --font-display: var(--font-noto-gurmukhi), sans-serif;
+    --font-text: var(--font-noto-gurmukhi), sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+    background-color: #FFFBF2;
+    color: #1C1007;
+    font-family: var(--font-text);
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .gold-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .gold-divider::before,
+  .gold-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #D4AF37, transparent);
+    opacity: 0.5;
+  }
+
+  .section-heading {
+    @apply font-serif text-4xl md:text-5xl font-light text-maroon;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-text-shadow {
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Decorative border pattern used in section dividers */
+  .brocade-border {
+    background-image: repeating-linear-gradient(
+      90deg,
+      #D4AF37 0px,
+      #D4AF37 3px,
+      transparent 3px,
+      transparent 12px
+    );
+    height: 2px;
+    opacity: 0.4;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #FFFBF2; }
+::-webkit-scrollbar-thumb { background: #C98D3E; border-radius: 3px; }
