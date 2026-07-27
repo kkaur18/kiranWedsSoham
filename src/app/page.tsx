@@ -4,7 +4,8 @@ import { ArrowRight, Bed, Car } from 'lucide-react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import CountdownTimer from '@/components/CountdownTimer';
-import { getGuestByCode } from '@/lib/guests';
+import StoryTimeline from '@/components/StoryTimeline';
+import { getGuestByEmail } from '@/lib/guests';
 import { getEventsForGuest } from '@/lib/events';
 import { config } from '@/lib/config';
 import { parseLocale } from '@/lib/i18n';
@@ -37,9 +38,9 @@ function Mandala({ className }: { className?: string }) {
 
 async function getCountdownDate(): Promise<string> {
   try {
-    const code = cookies().get('guest_code')?.value;
-    if (code) {
-      const guest = await getGuestByCode(code);
+    const email = cookies().get('guest_email')?.value;
+    if (email) {
+      const guest = await getGuestByEmail(email);
       if (guest) {
         const events = getEventsForGuest(guest.events);
         if (events.length > 0) return events[0].isoDate;
@@ -108,6 +109,8 @@ export default async function HomePage() {
 
         <div className="absolute bottom-0 inset-x-0 brocade-border" />
       </section>
+
+      <StoryTimeline t={t} />
 
       {/* ── Info preview ──────────────────────────────────────────────────────── */}
       <section className="py-20 px-4 bg-white">

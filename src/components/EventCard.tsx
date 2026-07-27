@@ -6,17 +6,13 @@ import type { T } from '@/lib/translations';
 interface Props {
   event: WeddingEvent;
   detailed?: boolean;
+  embedded?: boolean;
   t: T;
 }
 
-export default function EventCard({ event, detailed = false, t }: Props) {
-  return (
-    <div
-      className={cn(
-        'bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100',
-        'hover:shadow-md transition-shadow duration-300'
-      )}
-    >
+export default function EventCard({ event, detailed = false, embedded = false, t }: Props) {
+  const content = (
+    <>
       <div className="h-1.5 w-full" style={{ backgroundColor: event.badgeStyle }} />
 
       <div className="p-5 sm:p-6">
@@ -73,6 +69,14 @@ export default function EventCard({ event, detailed = false, t }: Props) {
           </div>
         )}
       </div>
+    </>
+  );
+
+  if (embedded) return <>{content}</>;
+
+  return (
+    <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+      {content}
     </div>
   );
 }

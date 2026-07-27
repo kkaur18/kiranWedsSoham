@@ -11,6 +11,8 @@ interface Props {
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
 
+const MAX_PARTY_SIZE = 10;
+
 export default function RSVPForm({ guest }: Props) {
   const t = useT();
   const [attending, setAttending] = useState<boolean | null>(null);
@@ -31,7 +33,7 @@ export default function RSVPForm({ guest }: Props) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          code: guest.code,
+          email: guest.email,
           attending,
           partySize: attending ? partySize : 0,
           dietary,
@@ -113,14 +115,11 @@ export default function RSVPForm({ guest }: Props) {
               <span className="font-serif text-4xl text-maroon w-10 text-center">{partySize}</span>
               <button
                 type="button"
-                onClick={() => setPartySize((n) => Math.min(guest.maxPartySize, n + 1))}
+                onClick={() => setPartySize((n) => Math.min(MAX_PARTY_SIZE, n + 1))}
                 className="w-10 h-10 rounded-full border-2 border-maroon/30 text-maroon font-bold text-lg hover:bg-maroon/10 transition-colors"
               >
                 +
               </button>
-              <span className="text-sm text-gray-400 font-sans ml-2">
-                ({t.rsvp.maxLabel} {guest.maxPartySize})
-              </span>
             </div>
           </div>
 

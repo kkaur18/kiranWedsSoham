@@ -77,6 +77,15 @@ export interface T {
     infoDesc: string;
     infoLink: string;
   };
+  story: {
+    tagline: string;
+    title: string;
+  };
+  gallery: {
+    tagline: string;
+    title: string;
+    comingSoon: string;
+  };
   footer: {
     home: string;
     events: string;
@@ -164,6 +173,15 @@ const en: T = {
     respondBy: 'Please respond by',
     infoDesc: 'Need information about accommodation or transport?',
     infoLink: 'Stay & Transport Info',
+  },
+  story: {
+    tagline: 'How it happened',
+    title: 'Our Story',
+  },
+  gallery: {
+    tagline: 'A few of our favourite moments',
+    title: 'Us',
+    comingSoon: 'Photo coming soon',
   },
   footer: {
     home: 'Home',
@@ -253,6 +271,15 @@ const hi: T = {
     infoDesc: 'आवास या परिवहन के बारे में जानकारी चाहिए?',
     infoLink: 'रहाइश और परिवहन जानकारी',
   },
+  story: {
+    tagline: 'कैसे हुई शुरुआत',
+    title: 'हमारी कहानी',
+  },
+  gallery: {
+    tagline: 'कुछ यादगार पल',
+    title: 'हम',
+    comingSoon: 'तस्वीर जल्द आएगी',
+  },
   footer: {
     home: 'होम',
     events: 'कार्यक्रम',
@@ -341,6 +368,15 @@ const pa: T = {
     infoDesc: 'ਰਿਹਾਇਸ਼ ਜਾਂ ਆਵਾਜਾਈ ਬਾਰੇ ਜਾਣਕਾਰੀ ਚਾਹੀਦੀ ਹੈ?',
     infoLink: 'ਰਿਹਾਇਸ਼ ਅਤੇ ਆਵਾਜਾਈ ਜਾਣਕਾਰੀ',
   },
+  story: {
+    tagline: 'ਕਿਵੇਂ ਹੋਈ ਸ਼ੁਰੂਆਤ',
+    title: 'ਸਾਡੀ ਕਹਾਣੀ',
+  },
+  gallery: {
+    tagline: 'ਕੁਝ ਯਾਦਗਾਰ ਪਲ',
+    title: 'ਅਸੀਂ',
+    comingSoon: 'ਤਸਵੀਰ ਜਲਦ ਆਵੇਗੀ',
+  },
   footer: {
     home: 'ਹੋਮ',
     events: 'ਸਮਾਗਮ',
@@ -428,6 +464,15 @@ const mr: T = {
     respondBy: 'कृपया या तारखेपर्यंत उत्तर द्या:',
     infoDesc: 'राहण्याच्या किंवा प्रवासाच्या माहितीची गरज आहे?',
     infoLink: 'राहणे आणि वाहतूक माहिती',
+  },
+  story: {
+    tagline: 'कसं सुरू झालं',
+    title: 'आमची गोष्ट',
+  },
+  gallery: {
+    tagline: 'काही आवडते क्षण',
+    title: 'आम्ही',
+    comingSoon: 'फोटो लवकरच येईल',
   },
   footer: {
     home: 'मुख्यपृष्ठ',

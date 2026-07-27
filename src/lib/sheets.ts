@@ -1,13 +1,15 @@
 import { google } from 'googleapis';
 
 function getAuth() {
-  const raw = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
-  if (!raw) throw new Error('GOOGLE_SERVICE_ACCOUNT_JSON is not set');
-  const credentials = JSON.parse(raw);
-  return new google.auth.GoogleAuth({
-    credentials,
-    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-  });
+  const clientId = process.env.GOOGLE_CLIENT_ID;
+  const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+  const refreshToken = process.env.GOOGLE_REFRESH_TOKEN;
+  if (!clientId || !clientSecret || !refreshToken) {
+    throw new Error('Google OAuth credentials are not configured in .env.local');
+  }
+  const oauth2Client = new google.auth.OAuth2(clientId, clientSecret);
+  oauth2Client.setCredentials({ refresh_token: refreshToken });
+  return oauth2Client;
 }
 
 function getSheetId() {
@@ -37,10 +39,7 @@ export async function appendRow(range: string, values: string[]): Promise<void> 
   });
 }
 
-export async function updateRow(
-  range: string,
-  values: string[]
-): Promise<void> {
+export async function updateRow(range: string, values: string[]): Promise<void> {
   const auth = getAuth();
   const sheets = google.sheets({ version: 'v4', auth });
   await sheets.spreadsheets.values.update({

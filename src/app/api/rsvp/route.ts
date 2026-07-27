@@ -1,35 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { appendRow } from '@/lib/sheets';
-import { getGuestByCode } from '@/lib/guests';
+import { getSheetRows, appendRow, updateRow } from '@/lib/sheets';
+import { getGuestByEmail } from '@/lib/guests';
 
+// RSVPs sheet: A=Guest Name, B=Guest Email, C=Arrival, D=Departure
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { code, attending, partySize, dietary, songRequest, message } = body;
+    const { email, arrival, departure } = body;
 
-    if (!code || attending === undefined || attending === null) {
+    if (!email || !arrival || !departure) {
       return NextResponse.json({ error: 'Missing required fields.' }, { status: 400 });
     }
 
-    const guest = await getGuestByCode(code);
+    const guest = await getGuestByEmail(email);
     if (!guest) {
-      return NextResponse.json({ error: 'Invalid invite code.' }, { status: 404 });
+      return NextResponse.json({ error: 'Guest not found.' }, { status: 404 });
     }
 
-    const timestamp = new Date().toISOString();
+    const rows = await getSheetRows('RSVPs!A2:D');
+    const rowIndex = rows.findIndex(
+      (r) => r[1]?.trim().toLowerCase() === email.trim().toLowerCase()
+    );
 
-    // Append to the "RSVPs" sheet
-    // Columns: Timestamp | Code | Name | Attending | PartySize | Dietary | SongRequest | Message
-    await appendRow('RSVPs!A:H', [
-      timestamp,
-      guest.code,
-      guest.name,
-      attending ? 'Yes' : 'No',
-      attending ? String(partySize ?? 1) : '0',
-      (dietary ?? '').trim(),
-      (songRequest ?? '').trim(),
-      (message ?? '').trim(),
-    ]);
+    if (rowIndex === -1) {
+      await appendRow('RSVPs!A:D', [guest.name, guest.email, arrival, departure]);
+    } else {
+      const sheetRow = rowIndex + 2;
+      await updateRow(`RSVPs!C${sheetRow}:D${sheetRow}`, [arrival, departure]);
+    }
 
     return NextResponse.json({ success: true });
   } catch (err) {
