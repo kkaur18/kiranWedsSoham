@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { config } from '@/lib/config';
 import { useT } from './LocaleProvider';
-import LanguageSwitcher from './LanguageSwitcher';
 import { cn } from '@/lib/utils';
 
 export default function Nav() {
@@ -56,7 +55,6 @@ export default function Nav() {
               {l.label}
             </Link>
           ))}
-          <LanguageSwitcher />
         </nav>
 
         {/* Mobile button */}
@@ -82,9 +80,6 @@ export default function Nav() {
               {l.label}
             </Link>
           ))}
-          <div className="pt-1">
-            <LanguageSwitcher />
-          </div>
         </div>
       )}
     </header>

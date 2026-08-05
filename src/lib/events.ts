@@ -21,9 +21,9 @@ export interface WeddingEvent {
   dateDisplay: string;
   time: string;
   venue: string;
-  address: string;
+  address?: string;
   description: string;
-  attire: string;
+  attire?: string;
   note?: string;
   accentColor: string;
   accentText: string;

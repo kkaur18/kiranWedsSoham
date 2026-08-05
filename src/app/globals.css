@@ -3,23 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-  /* ── Font routing by locale ─────────────────────────────────────── */
   :root {
     --font-display: var(--font-cormorant), Georgia, serif;
     --font-text: var(--font-dm-sans), Helvetica, Arial, sans-serif;
-  }
-
-  /* Hindi + Marathi → Devanagari */
-  [data-locale="hi"],
-  [data-locale="mr"] {
-    --font-display: var(--font-noto-serif-deva), serif;
-    --font-text: var(--font-noto-sans-deva), sans-serif;
-  }
-
-  /* Punjabi → Gurmukhi */
-  [data-locale="pa"] {
-    --font-display: var(--font-noto-gurmukhi), sans-serif;
-    --font-text: var(--font-noto-gurmukhi), sans-serif;
   }
 
   html {

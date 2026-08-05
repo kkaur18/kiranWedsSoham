@@ -110,7 +110,7 @@ export default async function EventsPage() {
             {t.events.tagline}
           </p>
           <h1 className="font-serif font-light text-gold mb-3" style={{ fontSize: 'clamp(2.5rem, 7vw, 4.5rem)' }}>
-            {guest.name}{t.events.celebrationsSuffix}
+            {t.events.welcomePrefix} {guest.name}
           </h1>
           <div className="flex items-center gap-4 justify-center">
             <div className="h-px w-16 bg-gold/30" />

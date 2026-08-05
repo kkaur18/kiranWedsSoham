@@ -46,7 +46,7 @@ export default function EventCard({ event, detailed = false, embedded = false, t
               {event.address && `, ${event.address}`}
             </span>
           </div>
-          {detailed && (
+          {detailed && event.attire && (
             <div className="flex items-start gap-2 text-sm font-sans text-gray-600">
               <Shirt size={14} className="flex-shrink-0 text-gray-400 mt-0.5" />
               <span>
