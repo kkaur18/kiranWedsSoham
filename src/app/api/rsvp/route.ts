@@ -19,8 +19,9 @@ export async function POST(request: NextRequest) {
     }
 
     const rows = await getSheetRows('RSVPs!A2:G');
+    const target = email.replace(/\s+/g, '').toLowerCase();
     const rowIndex = rows.findIndex(
-      (r) => r[1]?.trim().toLowerCase() === email.trim().toLowerCase()
+      (r) => r[1] && r[1].replace(/\s+/g, '').toLowerCase() === target
     );
 
     const values = [arrival, arrivalTime, departure, departureTime, String(partySize)];

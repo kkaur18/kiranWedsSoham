@@ -23,12 +23,20 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(config.siteUrl),
   title: `${config.couple.combined} — Wedding in Goa`,
   description: `${config.weddingDateDisplay} · ${config.location}`,
   openGraph: {
     title: `${config.couple.combined} — Wedding in Goa`,
     description: `${config.weddingDateDisplay} · ${config.location}`,
+    url: config.siteUrl,
+    siteName: `${config.couple.combined} — Wedding`,
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${config.couple.combined} — Wedding in Goa`,
+    description: `${config.weddingDateDisplay} · ${config.location}`,
   },
 };
 

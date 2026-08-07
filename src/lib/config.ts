@@ -13,6 +13,10 @@ export const config = {
   weddingDateDisplay: 'January 2027',
   location: 'Goa, India',
 
+  // Public site URL — used for link-preview metadata (WhatsApp, iMessage, etc).
+  // Update this if you attach a custom domain.
+  siteUrl: 'https://wedding-website-1056511474685.us-central1.run.app',
+
   events: {
     mehndi: {
       isoDate: '2026-12-31T10:00:00+05:30',
@@ -133,7 +137,7 @@ export const config = {
     {
       date: 'March 2024',
       title: 'Something more',
-      body: 'After 2.5 years of real friendship, they chose, together, to start something new.',
+      body: 'After years of real friendship, they chose, together, to start something new.',
     },
     {
       date: 'May 2024',
